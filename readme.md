@@ -32,7 +32,7 @@ Brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and 
 
 ### main method
 
-![fig2](paperreading/fig2.png)
+![fig2](paper%20reading/fig2.png)
 
 ## relation extraction
 Pytorch version of [GPLINKER](https://kexue.fm/archives/8888) based on the code [xhw205/GPLinker_torch](https://github.com/xhw205/GPLinker_torch).
@@ -42,7 +42,7 @@ Changes:
 - write the main part in jupyternotebook, a more reader-friendly way.
 
 ### 模型结构
-![fig1](relationextraction/fig1.png)
+![fig1](relation%20extraction/fig1.png)
 
 ### 代码各文件说明
 
