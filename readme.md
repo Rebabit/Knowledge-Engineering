@@ -2,7 +2,7 @@ Projects in Knowledge Engineering class (2022 Spring, BIT)  北理工 知识工�
 
 See report.pdf in each folder for detailed information of each project.
 
-## Named Entity Recognition （NER）
+## [Named Entity Recognition （NER）](https://github.com/Rebabit/Knowledge-Engineering/tree/main/NER)
 
 命名实体识别，即对文本中具有特定意义的词进行识别，在自然语言处理领域具有基础性意义。本实验采用北京大学《人民日报》基本标注语料库， 通过构建广义线性模型，实现了对人名、地名、机构名三类实体的识别，并采用BIO表示法进行了相应的标注。
 
@@ -20,7 +20,7 @@ See report.pdf in each folder for detailed information of each project.
 
 ![fig](NER/fig.png)
 
-## paper reading
+## [Paper Reading](https://github.com/Rebabit/Knowledge-Engineering/tree/main/paper%20reading)
 Brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and Relations Through Token Pair Linking*](https://arxiv.org/abs/2010.13415v1) in COLING 2020.
 
 - report.pdf: text version
@@ -34,7 +34,7 @@ Brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and 
 
 ![fig2](paper%20reading/fig2.png)
 
-## relation extraction
+## [Relation Extraction](https://github.com/Rebabit/Knowledge-Engineering/tree/main/relation%20extraction)
 Pytorch version of [GPLINKER](https://kexue.fm/archives/8888) based on the code [xhw205/GPLinker_torch](https://github.com/xhw205/GPLinker_torch).
 
 Changes:
