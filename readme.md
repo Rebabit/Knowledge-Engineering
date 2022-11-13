@@ -28,7 +28,7 @@ Brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and 
 
 ### main idea
 
-![fig1](paperreading/fig1.png)
+![fig1](paper%20reading/fig1.png)
 
 ### main method
 
