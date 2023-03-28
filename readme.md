@@ -3,7 +3,7 @@ Projects in Knowledge Engineering class (2022 Spring, BIT)  北理工 知识工�
 - `NER_SoftmaxRegression`：Used Numpy to build a generalized linear model on NER; achieved 67.4% accuracy on the [NEPD dataset](https://klcl.pku.edu.cn/gxzy/231686.htm).
 - `PaperReading_TPLinker`：Used video and report of a brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and Relations Through Token Pair Linking*](https://arxiv.org/abs/2010.13415v1) in COLING 2020.
 - `RelationExtraction_GPlinker`：Used Pytorch to apply GPlinker to a Chinese dataset.
-- `EventExtraction_LogisticRegression`: Example code for Knowledge Engineering class 2023 Spring. Both Numpy and Pytorch versions are included. 
+- `EventExtraction_LogisticRegression`: Example code for Knowledge Engineering class 2023 Spring. Both Numpy and Pytorch versions are included for Logistic Regression. 
 
 See report.pdf in each folder for detailed information of each project.
 
