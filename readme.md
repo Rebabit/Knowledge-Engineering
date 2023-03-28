@@ -1,8 +1,27 @@
 Projects in Knowledge Engineering class (2022 Spring, BIT)  北理工 知识工程 大作业
 
+- `NER_SoftmaxRegression`：Used Numpy to build a generalized linear model on NER; achieved 67.4% accuracy on the [NEPD dataset](https://klcl.pku.edu.cn/gxzy/231686.htm).
+- `PaperReading_TPLinker`：Used video and report of a brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and Relations Through Token Pair Linking*](https://arxiv.org/abs/2010.13415v1) in COLING 2020.
+- `RelationExtraction_GPlinker`：Used Pytorch to apply GPlinker to a Chinese dataset.
+- `EventExtraction_LogisticRegression`: Example code for Knowledge Engineering class 2023 Spring. Both Numpy and Pytorch versions are included. 
+
 See report.pdf in each folder for detailed information of each project.
 
-## [Named Entity Recognition （NER）](https://github.com/Rebabit/Knowledge-Engineering/tree/main/NER)
+## Named Entity Recognition （NER）
+
+Named Entity Recognition (NER) is the fundamental task of identifying words with specific meanings in text in the field of natural language processing. This experiment used the basic annotation corpus of the People's Daily newspaper from Peking University to build a generalized linear model and achieved recognition of three types of entities, namely, personal names, place names, and organization names, using the BIO representation method for corresponding annotations.
+
+The goal of named entity recognition was achieved in this experiment through the following steps:
+
+1. Vectorizing the original dataset and selecting features to represent each word as a vector, and converting the corresponding classification labels into numerals that can be used in computation.
+2. Generating training, validation, and testing sets and cleaning the data in the training set.
+3. Initializing the parameters W, determining the learning rate and number of iterations, and repeating steps 4-7 until the selected number of iterations is reached:
+4. Using the mini-batch method, a certain number of training set data is selected, and the Softmax probability is calculated. The classification predicted by the current model is the one with the highest probability for an input.
+5. Calculating the loss function value of the current model and taking its derivative.
+6. Updating the parameter W using the gradient descent method based on the derivative of the loss function.
+7. Comparing the predicted classification of the model with the actual classification, calculating the F1-measure of the training and validation sets used to evaluate the accuracy of the current model, and saving the maximum value of the validation set F1-measure and the corresponding parameter W.
+8. Comparing the sizes of the F1-measure of the validation sets corresponding to different feature selections for input words, data cleaning methods in the training set, learning rates and numbers of iterations during training, and W parameter update methods to select the best model for prediction.
+9. Using the W value reserved in step 7 for the corresponding model to predict the testing set and calculating its F1-measure.
 
 命名实体识别，即对文本中具有特定意义的词进行识别，在自然语言处理领域具有基础性意义。本实验采用北京大学《人民日报》基本标注语料库， 通过构建广义线性模型，实现了对人名、地名、机构名三类实体的识别，并采用BIO表示法进行了相应的标注。
 
@@ -18,9 +37,9 @@ See report.pdf in each folder for detailed information of each project.
 8. 通过改变输入词的特征选取、训练集中数据清洗的方式、训练时的学习率和迭代次数、参数W更新的方法，比较其对应的验证集F1-measure的大小，选择最好的模型用于预测。
 9. 将对应模型在步骤7保留的W值用于测试集，计算其F1-measure。
 
-![fig](NER/fig.png)
+<img src="assets/fig.png" alt="fig" style="zoom: 40%;" />
 
-## [Paper Reading](https://github.com/Rebabit/Knowledge-Engineering/tree/main/paper%20reading)
+## Paper Reading
 Brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and Relations Through Token Pair Linking*](https://arxiv.org/abs/2010.13415v1) in COLING 2020.
 
 - report.pdf: text version
@@ -28,23 +47,59 @@ Brief introduction to [*TPLinker: Single-stage Joint Extraction of Entities and 
 
 ### main idea
 
-![fig1](paper%20reading/fig1.png)
+<img src="assets/fig1-1679967219813-3.png" alt="fig1" style="zoom: 40%;" />
 
 ### main method
 
-![fig2](paper%20reading/fig2.png)
+<img src="assets/fig2.png" alt="fig2" style="zoom:40%;" />
 
-## [Relation Extraction](https://github.com/Rebabit/Knowledge-Engineering/tree/main/relation%20extraction)
+## Relation Extraction
 Pytorch version of [GPLINKER](https://kexue.fm/archives/8888) based on the code [xhw205/GPLinker_torch](https://github.com/xhw205/GPLinker_torch).
 
 Changes:
 - add the evaluation part and a lot of annotations
 - write the main part in jupyternotebook, a more reader-friendly way.
 
-### 模型结构
-![fig1](relation%20extraction/fig1.png)
+### model structure
+<img src="assets/fig1.png" alt="fig1" style="zoom: 40%;" />
 
-### 代码各文件说明
+### description of each code file
+
+1. **Model Configuration**: config.ini file
+
+   This includes the paths to the dataset and pre-trained model, as well as the settings for training parameters, making it easy to manage parameters. In particular:
+
+   - [paths]: location of pre-trained RoBERTa model and dataset
+   - [paras]: parameters for training. head_size corresponds to the dimension of the head in Multi-Head Attention.
+
+2. **Dataset Storage**: datasets folder
+
+   This experiment uses the CMeIE dataset for medical entity relation extraction, stored in JSON format, including the following files:
+
+   - 53_schema.json: SPO relationship constraint table
+   - CMeIE_train.json: training set
+   - CMeIE_dev.json: validation set
+   - CMeIE_test.json: test set
+
+3. **Data Preprocessing**: utils/data_loader.py file
+
+   This part encodes the dataset data and converts the data and labels into forms that can be used by the GPLinker model. The data_generator class provides the data generation method for training and inference using PyTorch DataLoader.
+
+4. **GPLinker Model**: GPlinker.py file
+
+   This uses the PyTorch neural network library to implement the relation extraction GPLinker model and defines the way to calculate the loss function.
+
+5. **Optimization Method**: utils/bert_optimization.py file
+
+   This uses the HuggingFace Adam optimizer for Bert, i.e., the BertAdam function in the file, and uses weight decay, learning rate warming, gradient clipping, and other methods during training.
+
+6. **Model Parameter Storage**: result/GPLinker_para.pth file
+
+   After training, this stores all parameters of the model for use in predicting entity relations during evaluation.
+
+7. **Training and Evaluation**: main.ipynb file
+
+   This file completes the forward and backward propagation of GPLinker, stores various parameters, and uses them for model evaluation.
 
 1. **模型配置**：config.ini文件
 
@@ -81,4 +136,12 @@ Changes:
 7. **训练与评估**：main.ipynb文件
 
    完成GPLinker的正反向传播，存储各项参数，并将其用于模型的评估。
+
+## Event Extraction
+
+Results (Due to the small data set, there are overfitting problems)：
+
+<img src="assets/042d6771ccf6a3b0bff03591f3948c29.png" alt="042d6771ccf6a3b0bff03591f3948c29" style="zoom:50%;" />
+
+<img src="assets/0d89f04d148677cb67c5985530ae77b3.png" alt="0d89f04d148677cb67c5985530ae77b3" style="zoom:50%;" />
 
